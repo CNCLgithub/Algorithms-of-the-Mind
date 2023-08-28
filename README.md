@@ -123,6 +123,8 @@ while replacing `[COMPUTE-NODE-ID]` with your node's ID and `[NETID]` with your 
 
 Now, go back to your tmux screen and click on the link that starts with `http://127.0.0.1:8888`
 
+You (should) have arrived!: A Jupyter Notebook screen in your `Algorithms-of-the-Mind` folder. 
+
 
 
 
