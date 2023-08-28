@@ -109,7 +109,7 @@ Part of the output should include something like the following
 
 We will click on (or copy and paste on your browser's address line) this URL after creating an SSH tunnel (see below).
 
-# Make an SSH tunnel to connect to your Jupyter Notebook
+# Make an SSH tunnel
 
 Now open a shell terminal on your own local computer (e.g., `iterm` on Mac OS X)
 
@@ -120,6 +120,8 @@ ssh -NL localhost:8888:[COMPUTE-NODE-ID].grace.ycrc.yale.edu:8888 [NETID]@grace.
 ```
 
 while replacing `[COMPUTE-NODE-ID]` with your node's ID and `[NETID]` with your YALE net id.
+
+# Connect to your Jupyter Notebook
 
 Now, go back to your tmux screen and click on the link that starts with `http://127.0.0.1:8888`
 
