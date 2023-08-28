@@ -4,3 +4,8 @@
 # ignore all .log files
 *.log
 
+# ignore all .svg files, *.gifs files
+*.svg
+*.gif
+
+
