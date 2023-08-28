@@ -1,6 +1,8 @@
 # Algorithms-of-the-Mind
 Course materials for Algorithms of the Mind
 
+Follow the steps in the rest of this document to set up your coding and computation environment for this course.
+
 # Connect Grace
 
 Start by reading YCRC's tutorials https://docs.ycrc.yale.edu/clusters-at-yale/ and including their page on Open On Demand (OOD) Web Portal https://docs.ycrc.yale.edu/clusters-at-yale/access/ood/.
@@ -19,7 +21,7 @@ On the top menu row, click "Clusters" -> ">_Grace Shell Access"
 
 You have landed on a login node on Grace. However, we cannot do computation on a login node, so we gotta get an interactive session on a compute node.
 
-### Open a tmux screen
+### Open a tmux screen on your shell terminal
 
 When using a remote terminal, you are strongly recommended to use a screen manager, e.g., `tmux`, which allows you to note lose your terminal session due to connection failures or simply loggin out.
 
@@ -58,9 +60,10 @@ salloc: Waiting for resource configuration
 salloc: Nodes r904u07n02 are ready for job
 [NET-ID@r904u07n02.grace ~]$
 ```
-On the bottom of this output, the string on the right-hand-side of @ is the ID of the compute node you landed. Record it and, from here on, replace all `[COMPUTE-NODE-ID]` with that. (In my case, this string is `r904u07n02`.
 
-# Clone this repo
+On the bottom of this output, the string on the right-hand-side of `@` symbol is the ID of the compute node you landed on when you requested a session ([slurm](https://docs.ycrc.yale.edu/clusters-at-yale/job-scheduling/) did it). Record it and, from here on, replace all `[COMPUTE-NODE-ID]` with that. (Notice that, in my case, this string would have been `r904u07n02`).
+
+# Clone this course repo
 
 At your home directory on Grace:
 
@@ -76,7 +79,7 @@ git fetch origin
 git merge origin/main
 ```
 
-Beyond the first usage as above, you can use the `git pull` command which does both commands at one: `git pull origin main`
+Beyond the first usage as above, you can simply use the command `git pull` in the subsequen downloads. (The `git pull` does both `fetch` and `merge` in one go assuming the remote name `origin` and branch name `main`).
 
 # Copy the Apptainer container 
 
