@@ -9,7 +9,7 @@ git clone https://github.com/CNCLgithub/Algorithms-of-the-Mind.git
 cd Algorithms-of-the-Mind
 ```
 
-# To down updates made in the repo
+# To download updates made in the repo
 
 ```
 git fetch origin
