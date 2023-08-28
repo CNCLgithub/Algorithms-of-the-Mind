@@ -7,5 +7,11 @@ Course materials for Algorithms of the Mind
 ```
 git clone https://github.com/CNCLgithub/Algorithms-of-the-Mind.git
 cd Algorithms-of-the-Mind
+```
 
+# To down updates made in the repo
+
+```
+git fetch origin
+git merge origin/main
 ```
