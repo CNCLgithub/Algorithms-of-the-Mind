@@ -24,3 +24,17 @@ git fetch origin
 git merge origin/main
 ```
 
+# Copy the Apptainer container 
+
+```
+cp /home/iy42/class_container/base.sif ~/Algorithms-of-the-Mind/container
+```
+
+or if you wanna build it yourself (assuming you are on a compute node):
+
+```
+cd ~/Algorithms-of-the-Mind/container
+./build_container.sh
+```
+(you might need to give executable permission on this file before you can run the above command: `chmod +x ./build_container.sh`
+
