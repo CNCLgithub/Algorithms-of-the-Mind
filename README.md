@@ -11,21 +11,26 @@ Now, there are a number of ways in which you can work on Grace. Here I'll descri
 
 ## Access to the Open On Demand (OOD) interface on Grace
 
-OOD provides a graphical-user-interface. That's how we will use Jupyter Notebooks, which is the primary manner in which you will develop code and execute it in this course.
+OOD provides a graphical user interface. That's how we will use Jupyter Notebooks, which is the primary manner in which you will develop code and execute it in this course.
 
-Go to the following URL and log in using your Yale credentials (you need to be on the Yale VPN) https://ood-grace.ycrc.yale.edu/
+YCRC provided this course with a specific OOD server (which is different from the common URL listed on their webiste)
+Go to the following URL for our class-specific OOD server and log in using your Yale credentials (you need to be on the Yale VPN) https://psyc261.ycrc.yale.edu.
 
 ### Open a shell terminal using OOD
 
-On the top menu row, click "Clusters" -> ">_Grace Shell Access"
+On the top menu row, click "Clusters" and click ">_Grace Shell Access".
 
-You have landed on a login node on Grace. However, we cannot do computation on a login node, so we gotta get an interactive session on a compute node.
+You have landed on a login node on Grace with a shell terminal. 
+
+Because we cannot do computation on a login node, we gotta get an interactive session on a compute node. But before, let's start a tmux session.
 
 ### Open a tmux screen on your shell terminal
 
-When using a remote terminal, you are strongly recommended to use a screen manager, e.g., `tmux`, which allows you to note lose your terminal session due to connection failures or simply loggin out.
+When using a remote terminal, you are strongly recommended to use a screen manager, e.g., `tmux`, which allows you to not lose your terminal session due to connection failures or simply loggin out. It is like being able to put your remote session into sleep mode (instead of shutting it up and re-starting each time you need it). 
 
 Read up on tmux https://docs.ycrc.yale.edu/clusters-at-yale/guides/tmux/
+
+Now create a new tmux session on your shell terminal (notice that we are still on the initial login node).
 
 ```
 # create a new tmux session
@@ -38,7 +43,7 @@ or
 tmux a -t0
 ```
 
-(You can view the current active tmux sessions via: `tmux ls`)
+(You can view your currently active tmux sessions via: `tmux ls`)
 
 ### Start an interactive session on a compute note
 
