@@ -24,6 +24,8 @@ git fetch origin
 git merge origin/main
 ```
 
+Beyond the first usage as above, you can use the `git pull` command which does both commands at one: `git pull origin main`
+
 # Copy the Apptainer container 
 
 ```
