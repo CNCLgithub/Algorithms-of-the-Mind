@@ -1,0 +1,6 @@
+# ignore the container file -- we don't want to host such a large file on github
+*.sif
+
+# ignore all .log files
+*.log
+
