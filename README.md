@@ -62,7 +62,7 @@ Now you are ready to move to a compute node by starting an interactive session w
 salloc -p day
 ```
 
-(See the getting started and slurm tutorials on YCRC's tutorials.)
+(See the [getting started](https://docs.ycrc.yale.edu/clusters-at-yale/job-scheduling/) and [slurm](https://docs.ycrc.yale.edu/clusters-at-yale/job-scheduling/) tutorials on YCRC's tutorials.)
 
 This should lead to an output similar to the following
 
@@ -76,7 +76,7 @@ salloc: Nodes r904u07n02 are ready for job
 [NET-ID@r904u07n02.grace ~]$
 ```
 
-On the bottom of this output, the string on the right-hand-side of `@` symbol is the ID of the compute node you landed on when you requested a session ([slurm](https://docs.ycrc.yale.edu/clusters-at-yale/job-scheduling/) did it). Record it and, from here on, replace all `[COMPUTE-NODE-ID]` with that. (Notice that, in my case, this string would have been `r904u07n02`).
+On the bottom of this output, the string on the right-hand-side of `@` symbol is the ID of the compute node you landed on when you requested a session. Record it and, from here on, replace all `[COMPUTE-NODE-ID]` with that. (Notice that, in my case, this string would have been `r904u07n02`).
 
 # Clone this course repo
 
