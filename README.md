@@ -17,7 +17,7 @@ OOD provides a graphical user interface. That's how we will be able to use Jupyt
 
 YCRC provided this course with a specific OOD server (which is different from the common URL listed on their webiste for Grace).
 
-Go to the following URL for our class-specific OOD server and log in using your Yale credentials (you need to be on the Yale VPN) https://psyc261.ycrc.yale.edu.
+Go to the following URL for our class-specific OOD server and log in using your Yale credentials (you need to be either on-campus on Yale Secure or on the Yale VPN) https://psyc261.ycrc.yale.edu.
 
 **Username:** `psyc261_[NETID]` (replace `[NETID]` with your Yale netid)
 
