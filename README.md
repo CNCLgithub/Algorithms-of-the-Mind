@@ -19,6 +19,9 @@ YCRC provided this course with a specific OOD server (which is different from th
 
 Go to the following URL for our class-specific OOD server and log in using your Yale credentials (you need to be on the Yale VPN) https://psyc261.ycrc.yale.edu.
 
+Username: `psyc261_[NETID]` (replace `[NETID]` with your Yale netid)
+Password: your passpowrd associated with your Yale netid. 
+
 ### Open a shell terminal using OOD
 
 On the top menu row (blue banner), click "Clusters" and then click ">_Grace Shell Access".
@@ -137,10 +140,10 @@ Now open a shell terminal on your own local computer (e.g., `iterm` on Mac OS X)
 Run the following command to make an SSH tunnel
 
 ```
-ssh -NL localhost:8888:[COMPUTE-NODE-ID].grace.ycrc.yale.edu:8888 [NETID]@grace.hpc.yale.edu
+ssh -NL localhost:8888:[COMPUTE-NODE-ID].grace.ycrc.yale.edu:8888 psyc261_NETID@grace.hpc.yale.edu
 ```
 
-while replacing `[COMPUTE-NODE-ID]` with your node's ID and `[NETID]` with your YALE net id.
+while replacing `[COMPUTE-NODE-ID]` with your node's ID and `NETID` with your YALE net id.
 
 # Connect to your Jupyter Notebook
 
