@@ -104,10 +104,10 @@ Beyond the first usage as above, you can simply use the command `git pull` in th
 (See class discussion/PDF of the slides for an intro to containers)
 
 ```
-cp /home/iy42/class_container/base.sif ~/Algorithms-of-the-Mind/container
+cp /gpfs/gibbs/project/psyc261/shared/base.sif ~/Algorithms-of-the-Mind/container
 ```
 
-or if you wanna build it yourself (assuming you are on a compute node):
+or if you wanna build it yourself (assuming you are on a compute node -- and noting that this command will take a while to run):
 
 ```
 cd ~/Algorithms-of-the-Mind/container
