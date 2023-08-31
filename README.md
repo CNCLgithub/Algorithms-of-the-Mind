@@ -19,8 +19,9 @@ YCRC provided this course with a specific OOD server (which is different from th
 
 Go to the following URL for our class-specific OOD server and log in using your Yale credentials (you need to be on the Yale VPN) https://psyc261.ycrc.yale.edu.
 
-Username: `psyc261_[NETID]` (replace `[NETID]` with your Yale netid)
-Password: your passpowrd associated with your Yale netid. 
+**Username:** `psyc261_[NETID]` (replace `[NETID]` with your Yale netid)
+
+**Password:** your passpowrd associated with your Yale netid. 
 
 ### Open a shell terminal using OOD
 
