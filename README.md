@@ -99,60 +99,38 @@ git merge origin/main
 
 Beyond the first usage as above, you can simply use the command `git pull` in the subsequent downloads. (The `git pull` does both `fetch` and `merge` in one go assuming the remote name `origin` and branch name `main`).
 
-# Copy the Apptainer container 
+# Understand the Apptainer container 
 
 (See class discussion/PDF of the slides for an intro to containers)
 
+The container definition file is located at 
+
 ```
-cp /gpfs/gibbs/project/psyc261/shared/base.sif ~/Algorithms-of-the-Mind/container
+cd ~/Algorithms-of-the-Mind/container/base.def
 ```
 
-or if you wanna build it yourself (assuming you are on a compute node -- and noting that this command will take a while to run):
+The built container that we will be accessing when we use the Jupyther app is located at
+
+```
+/gpfs/gibbs/project/psyc261/shared/base.sif
+```
+
+**Side track:** If you wanna build the container yourself (assuming you are on a compute node):
 
 ```
 cd ~/Algorithms-of-the-Mind/container
 ./build_container.sh
 ```
-(you might need to give executable permission on this file before you can run the above command: `chmod +x ./build_container.sh`)
+(you might need to give executable permission on this shell file before you can run the above command: `chmod +x ./build_container.sh`)
 
 NOTE: Building a container takes a while.
 
-# Fire the Jupyter notebook server using your container 
+# Fire the Jupyter app
 
-The following command launches a Jupyter notebook and serves it so that we can access it via browser
+On the top menu row (blue banner), click "Courses" and then click ">_PSYC261".
 
-```
-# In this command, we give a custom `JULIA_DEPOT_PATH` so that we can add new Julia packages locally
-apptainer run --env "JULIA_DEPOT_PATH=./julia:/opt/julia" base.sif
-```
+Launch a session using the interface (standard settings should be fine).
 
-Part of the output should include something like the following
-
-```
-[I 2023-08-28 09:59:31.939 ServerApp]     http://127.0.0.1:8888/lab?token=8a4554c1a14cd098d98f2e7a1c9b1f9bab1c06ebbc76e1dd
-```
-
-We will soon (but not just yet) click on (or copy and paste on your browser's address line) this URL after creating an SSH tunnel (see below).
-
-# Create an SSH tunnel
-
-Now open a shell terminal on your own local computer (e.g., `iterm` on Mac OS X)
-
-Run the following command to make an SSH tunnel
-
-```
-ssh -NL localhost:8888:[COMPUTE-NODE-ID].grace.ycrc.yale.edu:8888 psyc261_NETID@grace.hpc.yale.edu
-```
-
-while replacing `[COMPUTE-NODE-ID]` with your node's ID and `NETID` with your YALE net id.
-
-# Connect to your Jupyter Notebook
-
-Now, go back to your `tmux` screen and click on the link we mentioned above, the one that starts with `http://127.0.0.1:8888`
-
-You (should) have arrived!: A Jupyter Notebook screen in your `Algorithms-of-the-Mind` folder. 
+You (should) have arrived!: A Jupyter Notebook on your browser, being run on the HPC. Proceed to the folder of this repo (the `Algorithms-of-the-Mind` folder).
 
 Happy model building!
-
-
-
