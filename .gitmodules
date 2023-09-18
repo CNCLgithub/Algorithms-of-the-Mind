@@ -1,0 +1,3 @@
+[submodule "algorithms-of-the-mind-solutions"]
+	path = algorithms-of-the-mind-solutions
+	url = git@github.com:iyildirim/algorithms-of-the-mind-solutions.git
