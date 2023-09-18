@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# https://stackoverflow.com/a/5828396/2714651
+git submodule foreach git pull origin main
