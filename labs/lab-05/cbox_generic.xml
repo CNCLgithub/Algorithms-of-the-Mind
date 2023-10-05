@@ -49,10 +49,6 @@
         <rgb name="reflectance" value="0.570068, 0.0430135, 0.0443706"/>
     </bsdf>
 
-    <!-- <bsdf type="dielectric" id="glass"/> -->
-
-    <!-- <bsdf type="conductor" id="mirror"/> -->
-
     <bsdf type="twosided" id="right-sphere">
 		<bsdf type="diffuse">
 			<rgb name="reflectance" value="0.725, 0.71, 0.68" />
