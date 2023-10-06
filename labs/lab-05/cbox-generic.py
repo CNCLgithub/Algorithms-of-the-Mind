@@ -151,7 +151,6 @@ def initialize_scene():
             }
         },
 
-
         'right-object': {
             'type': 'sphere',
             'to_world': T.translate([0.5, -0.75, -0.2]).scale(0.5),
@@ -159,7 +158,7 @@ def initialize_scene():
                 'type' : 'ref',
                 'id' : 'color-sphere'
             }
-        },
+        }
 
     }
     return d
