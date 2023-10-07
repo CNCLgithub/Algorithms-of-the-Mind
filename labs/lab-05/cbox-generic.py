@@ -2,6 +2,8 @@ import numpy as np
 
 from mitsuba import ScalarTransform4f as T
 
+import mitsuba as mi
+
 def initialize_scene():
 
     d = {
@@ -162,3 +164,4 @@ def initialize_scene():
 
     }
     return d
+
