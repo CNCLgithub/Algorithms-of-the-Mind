@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+rsync -av --progress \
+  solutions/release/ \
+  problemsets/
