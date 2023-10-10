@@ -6,7 +6,5 @@
 # ignore all .log files
 *.log
 
-
-
 *-checkpoint.ipynb
-
+.ipynb_checkpoints/
