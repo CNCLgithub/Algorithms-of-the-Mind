@@ -6,6 +6,9 @@ on:
       - ".github/workflows/build-container.yaml"
       - "Dockerfile"
       - ".dockerignore"
+      - "**/Project.toml"
+      - "**/Manifest.toml"
+      - "**/env.yaml"
 
 jobs:
   docker:
@@ -33,7 +36,7 @@ jobs:
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
-          username: ${{ github.repository_owner }}
+          username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - id: build-and-push
