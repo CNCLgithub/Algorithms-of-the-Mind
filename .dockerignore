@@ -1,3 +1,6 @@
 solutions/
 docs/
 *.csv
+.DS_Store
+.ipynb_checkpoints
+.git
