@@ -1,9 +1,9 @@
 # Algorithms-of-the-Mind
-Course materials for Algorithms of the Mind
 
-Follow the steps in the rest of this document to set up your coding and computation environment for this course.
+**Course description**: This course introduces computational theories of psychological processes, with a pedagogical focus on perception and high-level cognition. Each week students learn about new computational methods grounded in neural and/or cognitive phenomena. Lectures introduce these topics conceptually; lab sections provide hands-on instruction with programming assignments and review of mathematical concepts. Lectures cover a range of computational methods across the fields of computational statistics, artificial intelligence, and machine learning including probabilistic programming, artificial neural networks, differentiable simulators, and sampling- and optimization-based inference methods. Students work through weekly lab sections, weekly reading responses, four homework assignments, in addition to a final paper or a computational modeling project. 
 
-**Description**: This course will introduce computational theories of psychological processes, with a pedagogical focus on perception and high-level cognition. Each week students will learn about new computational methods grounded in neural and/or cognitive phenomena. Lectures will introduce these topics conceptually; lab sections will provide hands-on instruction with programming assignments and review of mathematical concepts. Lectures will cover a range of computational methods across the fields of computational statistics, artificial intelligence, and machine learning including probabilistic programming, artificial neural networks, differentiable simulators, and sampling- and optimization-based inference methods. Students will work through weekly lab sections, weekly reading responses, four homework assignments, in addition to a final paper or a computational modeling project. 
+The course materials are partially publicly available in this repo. We aim to make all content publicly available. 
+
 
 |          | Topic                                                                                    |
 |----------|------------------------------------------------------------------------------------------|
@@ -35,6 +35,8 @@ Follow the steps in the rest of this document to set up your coding and computat
 
 
 # Setup 
+
+Follow the steps in the rest of this document to set up your computational environment for this course.
 
 ## Connect to Grace
 
