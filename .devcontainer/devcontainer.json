@@ -1,0 +1,105 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/ubuntu
+{
+	"name": "Algorithms of the Mind",
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	"image": "ghcr.io/jmuchovej/algorithms-of-the-mind:edge",
+
+	"hostRequirements": {
+		"cpus": 2,
+		"memory": "8gb",
+		"storage": "64gb"
+	},
+
+	// Features to add to the dev container. More info: https://containers.dev/features.
+	"features": {
+		"ghcr.io/devcontainers/features/common-utils:2": {
+			"installZsh": true,
+			"installOhMyZsh": false,
+			"configureZshAsDefaultShell": true,
+			"username": "jovyan",
+			"userUid": "1000",
+			"userGid": "1000",
+			// "upgradePackages": true
+		},
+	},
+
+	"mounts": [
+		{
+			"source": "${localWorkspaceFolder}/.devcontainer/startup.jl",
+			"target": "/home/vscode/.julia/config/startup.jl",
+			"type": "bind"
+		}
+	],
+
+	"workspaceMount": "source=${localWorkspaceFolder},target=/algorithms-of-the-mind,type=bind,consistency=cached",
+	"workspaceFolder": "/algorithms-of-the-mind",
+
+	"postCreateCommand": {
+		"Install Julia Packages": "julia -e 'import Pkg; Pkg.instantiate(); Pkg.precompile()'",
+		"Launch JupyterLab": "/opt/conda/envs/algorithms-of-the-mind/bin/jupyter lab --ip 0.0.0.0 --port 8888 --no-browser --NotebookApp.token='' --NotebookApp.password='' /algorithms-of-the-mind"
+	},
+
+	"postAttachCommand": {
+		// "Launch Pluto": "julia -e 'import Pluto; Pluto.run(; require_secret_for_open_links=false, require_secret_for_access=false)'",
+	},
+
+	"customizations": {
+		"vscode": {
+			"settings": {
+				"files.associations": {
+					"*.jl": "julia",
+				},
+				"files.exclude": {
+					"**/.git": true,
+					"**/.svn": true,
+					"**/.hg": true,
+					"**/CVS": true,
+					"**/.DS_Store": true,
+					"**/Thumbs.db": true,
+					"**/*.jl.cov": true,
+					"**/*.jl.*.cov": true,
+					"**/*.jl.mem": true,
+				},
+				"python.condaPath": "/opt/conda/bin/conda",
+				"python.defaultInterpreterPath": "/opt/conda/bin/python",
+				"julia.executablePath": "/usr/local/bin/julia",
+				"julia.plots.path": "/algorithms-of-the-mind/plots/",
+				"julia.persistentSession.shell": "/usr/bin/zsh"
+			},
+			"extensions": [
+				"ms-toolsai.jupyter-renderers",
+				"julialang.language-julia",
+				"ms-toolsai.jupyter",
+				"ms-toolsai.vscode-jupyter-cell-tags",
+				"ms-python.python",
+				"ms-toolsai.jupyter-keymap",
+				"REditorSupport.r",
+				"aaron-bond.better-comments",
+				"mikestead.dotenv",
+				"ronnidc.nunjucks",
+				"ms-azuretools.vscode-docker",
+				"redhat.vscode-yaml",
+				"timonwong.shellcheck",
+				"bungcip.better-toml",
+				"quarto.quarto",
+				"JuliaComputing.pluto-vscode"
+			]
+		}
+	},
+
+	"containerEnv": {
+		"JULIA_PROJECT": "/algorithms-of-the-mind",
+		"JULIA_NUM_THREADS": "auto",
+	},
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	// "postCreateCommand": "uname -a",
+
+	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	"remoteUser": "jovyan",
+	// "containerUser": "jovyan",
+}
