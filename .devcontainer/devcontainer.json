@@ -81,9 +81,9 @@
 				"ms-azuretools.vscode-docker",
 				"redhat.vscode-yaml",
 				"timonwong.shellcheck",
-				"bungcip.better-toml",
 				"quarto.quarto",
-				"JuliaComputing.pluto-vscode"
+				"JuliaComputing.pluto-vscode",
+				"tamasfe.even-better-toml"
 			]
 		}
 	},
