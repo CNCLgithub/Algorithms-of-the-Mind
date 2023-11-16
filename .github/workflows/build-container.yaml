@@ -8,7 +8,7 @@ on:
       - ".dockerignore"
       - "**/Project.toml"
       - "**/Manifest.toml"
-      - "**/env.yaml"
+      - "**/environment.yml"
 
 jobs:
   docker:
@@ -49,9 +49,8 @@ jobs:
         with:
           context: .
           push: true
-          platforms: linux/amd64
-          # linux/arm64 is blocked by `mitsuba`, last checked 14 Nov 2023
-          # platforms: linux/amd64,linux/arm64
+          # * NOTE: linux/arm64 cannot be supported until `mitsuba` has a linux/arm64 wheel, last checked 14 Nov 2023
+          platforms: linux/amd64,linux/arm64
           tags: |
-            ghcr.io/${{ github.repository }}:edge
+            ghcr.io/${{ github.repository }}:latest
             ghcr.io/${{ github.repository }}:${{ steps.vars.outputs.sha_short }}
