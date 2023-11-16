@@ -17,17 +17,19 @@ RUN apt-get update --yes && \
 
 RUN groupadd -g ${NB_UID} ${NB_USER} && \
     usermod -g ${NB_USER} -aG users ${NB_USER} && \
-    echo ${NB_USER} ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/${NB_USER} \
-    && chmod 0440 /etc/sudoers.d/${NB_USER}
-
-USER ${NB_USER}
+    echo ${NB_USER} ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/${NB_USER} && \
+    chmod 0440 /etc/sudoers.d/${NB_USER}
 
 RUN conda install -n base conda-libmamba-solver && \
     conda config --set solver libmamba
 
+USER ${NB_USER}
+
 ADD --chown=${NB_USER}:${NB_USER} . /algorithms-of-the-mind
 
-RUN conda env create -f /algorithms-of-the-mind/env.yaml
+WORKDIR /algorithms-of-the-mind
+
+RUN conda env create -f /algorithms-of-the-mind/environment.yml
 
 ENV CONDA_JL_HOME=/opt/conda/envs/algorithms-of-the-mind \
     EDITOR=neovim \

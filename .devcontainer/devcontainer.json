@@ -4,6 +4,8 @@
 	"name": "Algorithms of the Mind",
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
 	"image": "ghcr.io/jmuchovej/algorithms-of-the-mind:edge",
+	// Since `mitsuba` has not been built on `arm64`, we must force the use of `amd64`
+	// "runArgs": ["--platform=linux/amd64" ],
 
 	"hostRequirements": {
 		"cpus": 2,
