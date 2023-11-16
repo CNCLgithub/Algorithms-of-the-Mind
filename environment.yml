@@ -26,7 +26,7 @@ dependencies:
   - "numpy=1.26"
 
   # - pip:
-  # NOTE: Mitsuba can't be installed yet because there is no `linux/arm64` variants.
-  # NOTE: Until a `linux/arm64` compilation of Mitsuba exists, it cannot be included as Devcontainers demand the same platform architecture as the host (e.g., Apple M1s need a `linux/arm64` container).
+  # * NOTE: Mitsuba can't be installed yet because there is no `linux/arm64` variants.
+  # * NOTE: Until a `linux/arm64` compilation of Mitsuba exists, it cannot be included as Devcontainers demand the same platform architecture as the host (e.g., Apple M1s need a `linux/arm64` container).
   #   # https://pypi.org/project/mitsuba/
   #   - mitsuba==3.4.0
