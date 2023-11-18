@@ -14,11 +14,11 @@ on:
 
 jobs:
   docker-amd64:
-    uses: ".github/workflows/build-container.yaml"
+    uses: "./.github/workflows/build-container.yaml"
     with:
       arch: amd64
 
   docker-arm64:
-    uses: ".github/workflows/build-container.yaml"
+    uses: "./.github/workflows/build-container.yaml"
     with:
       arch: arm64
