@@ -23,16 +23,17 @@ RUN groupadd -g ${NB_UID} ${NB_USER} && \
 RUN conda install -n base conda-libmamba-solver && \
     conda config --set solver libmamba
 
-USER ${NB_USER}
-
 ADD --chown=${NB_USER}:${NB_USER} . /algorithms-of-the-mind
 
 WORKDIR /algorithms-of-the-mind
 
-RUN conda env create -f /algorithms-of-the-mind/environment.yml
+RUN conda env create -f /algorithms-of-the-mind/environment.yml --yes
+
+ADD .devcontainer/root/ /
 
 ENV CONDA_JL_HOME=/opt/conda/envs/algorithms-of-the-mind \
     EDITOR=neovim \
+    CONDA_DEFAULT_ENV=algorithms-of-the-mind \
     JULIA_PROJECT=/algorithms-of-the-mind
 
 RUN julia <<EOF
@@ -54,3 +55,8 @@ RUN export JUPYTER_DATA_DIR=/opt/conda/envs/algorithms-of-the-mind/share/jupyter
       )
     )
 EOF
+
+RUN chown -R ${NB_UID}:${NB_GID} /algorithms-of-the-mind; \
+    fix-permissions /algorithms-of-the-mind
+
+USER ${NB_USER}

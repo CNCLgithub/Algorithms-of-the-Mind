@@ -1,0 +1,1 @@
+root/opt/conda/envs/algorithms-of-the-mind/etc/jupyter/config.py

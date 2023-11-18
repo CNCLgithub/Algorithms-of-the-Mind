@@ -26,11 +26,11 @@
 	"mounts": [
 		{
 			"source": "${localWorkspaceFolder}/.devcontainer/startup.jl",
-			"target": "/home/vscode/.julia/config/startup.jl",
+			"target": "/opt/julia/etc/startup.jl",
 			"type": "bind"
 		},
 		{
-			"source": "${localWorkspaceFolder}/.devcontainer/etc/jupyter/config.py",
+			"source": "${localWorkspaceFolder}/.devcontainer/jupyter_lab_config.py",
 			"target": "/opt/conda/envs/algorithms-of-the-mind/etc/jupyter/config.py",
 			"type": "bind"
 		}
