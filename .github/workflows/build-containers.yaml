@@ -14,11 +14,13 @@ on:
 
 jobs:
   docker-amd64:
+    name: "Build for Docker on arm64 machines"
     uses: "./.github/workflows/build-container.yaml"
     with:
       arch: amd64
 
   docker-arm64:
+    name: "Build for Docker on amd64 machines"
     uses: "./.github/workflows/build-container.yaml"
     with:
       arch: arm64

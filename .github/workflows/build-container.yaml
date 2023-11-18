@@ -16,12 +16,8 @@ jobs:
       # Per: https://github.com/actions/runner-images/issues/2840#issuecomment-790492173
       # This workflow has repeatedly run out of space, particularly when building
       #   `linux/{arm,amd}64` containers.
-      # - id: clear-excess-storage
-      #   run: |
-      #     sudo rm -rf /usr/share/dotnet
-      #     sudo rm -rf /opt/ghc
-      #     sudo rm -rf "/usr/local/share/boost"
-      #     sudo rm -rf "$AGENT_TOOLSDIRECTORY"
+      - name: Free Disk Space (Ubuntu)
+        uses: jlumbroso/free-disk-space@v1.3.1
 
       - id: checkout
         uses: actions/checkout@v4
