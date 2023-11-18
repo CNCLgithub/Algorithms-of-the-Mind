@@ -1,0 +1,23 @@
+name: Build Containers for ARM64 & AMD64 Linux
+
+on:
+  push:
+    paths:
+      - ".github/workflows/build-container.yaml"
+      - ".github/workflows/build-containers.yaml"
+      - "Dockerfile"
+      - ".dockerignore"
+      - "**/Project.toml"
+      - "**/Manifest.toml"
+      - "**/environment.yml"
+
+jobs:
+  docker-amd64:
+    uses: ".github/workflows/build-container.yaml"
+    with:
+      arch: amd64
+
+  docker-arm64:
+    uses: ".github/workflows/build-container.yaml"
+    with:
+      arch: arm64
