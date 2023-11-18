@@ -1,6 +1,7 @@
 name: Build Containers for ARM64 & AMD64 Linux
 
 on:
+  workflow_dispatch: {}
   push:
     paths:
       - ".github/workflows/build-container.yaml"
