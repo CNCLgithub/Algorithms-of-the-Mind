@@ -47,14 +47,13 @@ RUN julia <<EOF
   Pkg.instantiate()
 EOF
 
-RUN export JUPYTER_DATA_DIR=${CONDA_DIR}/share/jupyter; \
-    rm -rf ${JUPYTER_DATA_DIR}/kernels/* ; \
+RUN rm -rf ${JUPYTER_DATA_DIR}/kernels/* ; \
     pkgs=$(conda list -n algorithms-of-the-mind --json); \
     _python="$(echo "${pkgs}" | jq -r '.[] | select(.name == "python")')"; \
     pythonV="$(echo "${_python}" | jq -r ".version" | tr -d '[:space:]')"; \
     conda run -n algorithms-of-the-mind \
       python -m ipykernel install \
-        --prefix "${JUPYTER_DATA_DIR}" \
+        --prefix "${CONDA_DIR}" \
         --name atom-py \
         --display-name "Algorithms of the Mind (Python) ${pythonV}"; \
     juliaV="$(julia --version | grep -Eo "([0-9]{1,}\.)+[0-9]{1,}")"; \
