@@ -8,3 +8,6 @@
 
 *-checkpoint.ipynb
 .ipynb_checkpoints/
+.virtual_documents/
+
+node_modules/
