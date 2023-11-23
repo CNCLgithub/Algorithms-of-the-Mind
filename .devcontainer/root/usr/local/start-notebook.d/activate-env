@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+. ${CONDA_DIR}/etc/profile.d/conda.sh
+conda activate algorithms-of-the-mind

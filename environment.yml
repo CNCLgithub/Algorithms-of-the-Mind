@@ -1,0 +1,32 @@
+name: "algorithms-of-the-mind"
+channels:
+  - nodefaults
+  - conda-forge
+dependencies:
+  # Python Release Schedule
+  #   https://devguide.python.org/versions/#supported-versions
+  - "python=3.11"
+  - "pip=23"
+  # NodeJS Release Schedule
+  #   https://github.com/nodejs/release?tab=readme-ov-file#release-schedule
+  - "nodejs=18.17"
+
+  # Applications
+  - "jupyter=1.0"
+  - "jupyterlab=4"
+  # https://anaconda.org/conda-forge/jupyterlab_pygments
+  - "jupyterlab_pygments"
+  # https://anaconda.org/conda-forge/jupyterlab-lsp
+  - "jupyterlab-lsp"
+
+  # https://anaconda.org/conda-forge/nbgrader
+  - "nbgrader=0.9"
+
+  # Python packages needed for Julia
+  - "numpy=1.26"
+
+  # - pip:
+  # * NOTE: Mitsuba can't be installed yet because there is no `linux/arm64` variants.
+  # * NOTE: Until a `linux/arm64` compilation of Mitsuba exists, it cannot be included as Devcontainers demand the same platform architecture as the host (e.g., Apple M1s need a `linux/arm64` container).
+  #   # https://pypi.org/project/mitsuba/
+  #   - mitsuba==3.4.0
