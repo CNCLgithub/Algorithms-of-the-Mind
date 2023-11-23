@@ -2,7 +2,7 @@
 // README at: https://github.com/devcontainers/templates/tree/main/src/ubuntu
 {
 	"name": "Algorithms of the Mind",
-	"image": "ghcr.io/jmuchovej/algorithms-of-the-mind:latest",
+	"image": "ghcr.io/cnclgithub/algorithms-of-the-mind:latest",
 	// * Since `mitsuba` has not been built on `arm64`, we must force the use of `amd64`
 	// "runArgs": ["--platform=linux/amd64" ],
 
