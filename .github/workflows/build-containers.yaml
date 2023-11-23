@@ -26,9 +26,12 @@ jobs:
         with:
           submodules: false
 
+      # https://github.com/orgs/community/discussions/25768#discussioncomment-3249183
       - name: Set outputs
         id: vars
-        run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+        run: |
+          echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+          echo "repo=${GITHUB_REPOSITORY,,}" >> ${GITHUB_ENV}
 
       - id: setup-qemu
         name: Set up QEMU
@@ -59,5 +62,5 @@ jobs:
           # * NOTE: linux/arm64 cannot be supported until `mitsuba` has a linux/arm64 wheel, last checked 14 Nov 2023
           platforms: linux/arm64,linux/amd64
           tags: |
-            ghcr.io/${{ github.repository }}:latest
-            ghcr.io/${{ github.repository }}:${{ steps.vars.outputs.sha_short }}
+            ghcr.io/${{ steps.vars.outputs.repo }}:latest
+            ghcr.io/${{ steps.vars.outputs.repo }}:${{ steps.vars.outputs.sha_short }}
