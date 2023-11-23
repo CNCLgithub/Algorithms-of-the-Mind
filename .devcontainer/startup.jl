@@ -1,1 +1,1 @@
-root/opt/julia/etc/startup.jl
+./root/opt/julia/etc/startup.jl
