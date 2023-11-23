@@ -4,7 +4,6 @@ on:
   workflow_dispatch: {}
   push:
     paths:
-      # - ".github/workflows/build-container.yaml"
       - ".github/workflows/build-containers.yaml"
       - "Dockerfile"
       - ".dockerignore"
