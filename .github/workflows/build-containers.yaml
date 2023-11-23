@@ -1,0 +1,64 @@
+name: Build Containers for ARM64 & AMD64 Linux
+
+on:
+  workflow_dispatch: {}
+  push:
+    paths:
+      # - ".github/workflows/build-container.yaml"
+      - ".github/workflows/build-containers.yaml"
+      - "Dockerfile"
+      - ".dockerignore"
+      - "**/Project.toml"
+      - "**/Manifest.toml"
+      - "**/environment.yml"
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      # Per: https://github.com/actions/runner-images/issues/2840#issuecomment-790492173
+      # This workflow has repeatedly run out of space, particularly when building
+      #   `linux/{arm,amd}64` containers.
+      - name: Free Disk Space (Ubuntu)
+        uses: jlumbroso/free-disk-space@v1.3.1
+
+      - id: checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: false
+
+      - name: Set outputs
+        id: vars
+        run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+
+      - id: setup-qemu
+        name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - id: setup-buildx
+        name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+        # https://github.com/docker/build-push-action/issues/761#issuecomment-1645602086
+        with:
+          driver-opts: |
+            image=moby/buildkit:v0.12.0
+
+      - id: setup-ghcr
+        name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - id: build-and-push
+        name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          # * NOTE: linux/arm64 cannot be supported until `mitsuba` has a linux/arm64 wheel, last checked 14 Nov 2023
+          platforms: linux/arm64,linux/amd64
+          tags: |
+            ghcr.io/${{ github.repository }}:latest
+            ghcr.io/${{ github.repository }}:${{ steps.vars.outputs.sha_short }}
