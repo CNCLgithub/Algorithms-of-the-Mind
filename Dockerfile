@@ -13,6 +13,7 @@ RUN apt-get update --yes && \
     apt-get install --yes --no-install-recommends \
       neovim \
       tmux \
+      jq \
     && rm -rf /var/lib/apt/cache/*
 
 RUN groupadd -g ${NB_UID} ${NB_USER} && \
@@ -27,27 +28,41 @@ ADD --chown=${NB_USER}:${NB_USER} . /algorithms-of-the-mind
 
 WORKDIR /algorithms-of-the-mind
 
-RUN conda env create -f /algorithms-of-the-mind/environment.yml --yes
+RUN conda env create -f /algorithms-of-the-mind/environment.yml --yes; \
+    conda env update -n base -f /algorithms-of-the-mind/environment.yml
 
 ADD .devcontainer/root/ /
 
-ENV CONDA_JL_HOME=/opt/conda/envs/algorithms-of-the-mind \
-    EDITOR=neovim \
-    CONDA_DEFAULT_ENV=algorithms-of-the-mind \
-    JULIA_PROJECT=/algorithms-of-the-mind
+ENV JUPYTER_DATA_DIR="${CONDA_DIR}/share/jupyter"
+ENV CONDA_JL_HOME="${CONDA_DIR}/envs/algorithms-of-the-mind"
+ENV EDITOR="neovim"
+ENV CONDA_DEFAULT_ENV="algorithms-of-the-mind"
+ENV JULIA_PROJECT="/algorithms-of-the-mind"
+ENV NOTEBOOK_ARGS="--config /opt/conda/etc/jupyter/config.py"
+EXPOSE 2686
 
 RUN julia <<EOF
   import Pkg;
   Pkg.activate("/algorithms-of-the-mind")
   Pkg.instantiate()
-  Pkg.precompile()
 EOF
 
-RUN export JUPYTER_DATA_DIR=/opt/conda/envs/algorithms-of-the-mind/share/jupyter; \
+RUN export JUPYTER_DATA_DIR=${CONDA_DIR}/share/jupyter; \
+    rm -rf ${JUPYTER_DATA_DIR}/kernels/* ; \
+    pkgs=$(conda list -n algorithms-of-the-mind --json); \
+    _python="$(echo "${pkgs}" | jq -r '.[] | select(.name == "python")')"; \
+    pythonV="$(echo "${_python}" | jq -r ".version" | tr -d '[:space:]')"; \
+    conda run -n algorithms-of-the-mind \
+      python -m ipykernel install \
+        --prefix "${JUPYTER_DATA_DIR}" \
+        --name atom-py \
+        --display-name "Algorithms of the Mind (Python) ${pythonV}"; \
+    juliaV="$(julia --version | grep -Eo "([0-9]{1,}\.)+[0-9]{1,}")"; \
     julia <<EOF
     import IJulia;
     IJulia.installkernel(
-      "Julia (AotM)";
+      "Algorithms of the Mind (Julia)";
+      specname="atom-jl",
       env=Dict(
         "JULIA_PROJECT" => ENV["JULIA_PROJECT"],
         "CONDA_JL_HOME" => ENV["CONDA_JL_HOME"],
@@ -57,6 +72,8 @@ RUN export JUPYTER_DATA_DIR=/opt/conda/envs/algorithms-of-the-mind/share/jupyter
 EOF
 
 RUN chown -R ${NB_UID}:${NB_GID} /algorithms-of-the-mind; \
-    fix-permissions /algorithms-of-the-mind
+    fix-permissions /algorithms-of-the-mind; \
+    chown -R ${NB_UID}:${NB_GID} ${CONDA_DIR}; \
+    fix-permissions ${CONDA_DIR}
 
 USER ${NB_USER}
