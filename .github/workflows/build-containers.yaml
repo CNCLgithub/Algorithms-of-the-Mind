@@ -31,7 +31,7 @@ jobs:
         id: vars
         run: |
           echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
-          echo "repo=${GITHUB_REPOSITORY,,}" >> ${GITHUB_ENV}
+          echo "repo=${GITHUB_REPOSITORY,,}" >> ${GITHUB_OUTPUT}
 
       - id: setup-qemu
         name: Set up QEMU
