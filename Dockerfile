@@ -63,16 +63,22 @@ RUN rm -rf ${JUPYTER_DATA_DIR}/kernels/* ; \
       "Algorithms of the Mind (Julia)";
       specname="atom-jl",
       env=Dict(
-        "JULIA_PROJECT" => ENV["JULIA_PROJECT"],
-        "CONDA_JL_HOME" => ENV["CONDA_JL_HOME"],
+        "JULIA_PROJECT" => "${JULIA_PROJECT}",
+        "CONDA_JL_HOME" => "${CONDA_JL_HOME}",
         "JULIA_NUM_THREADS" => "auto",
       )
     )
 EOF
+EXPOSE 2686
 
-RUN chown -R ${NB_UID}:${NB_GID} /algorithms-of-the-mind; \
+RUN chown -R ${NB_UID}:${NB_UID} /algorithms-of-the-mind; \
+    chmod -R 2775 /algorithms-of-the-mind; \
     fix-permissions /algorithms-of-the-mind; \
-    chown -R ${NB_UID}:${NB_GID} ${CONDA_DIR}; \
-    fix-permissions ${CONDA_DIR}
+    chown -R ${NB_UID}:${NB_UID} ${CONDA_DIR}; \
+    chmod -R 2775 ${CONDA_DIR}; \
+    fix-permissions ${CONDA_DIR}; \
+    chown -R ${NB_UID}:${NB_UID} ${JULIA_PKGDIR}; \
+    chmod -R 2775 ${JULIA_PKGDIR}; \
+    fix-permissions ${JULIA_PKGDIR};
 
 USER ${NB_USER}
