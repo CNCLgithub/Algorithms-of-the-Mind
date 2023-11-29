@@ -25,13 +25,13 @@
 
 	"mounts": [
 		{
-			"source": "${localWorkspaceFolder}/.devcontainer/startup.jl",
+			"source": "${localWorkspaceFolder}/.devcontainer/root/opt/julia/etc/startup.jl",
 			"target": "/opt/julia/etc/startup.jl",
 			"type": "bind"
 		},
 		{
-			"source": "${localWorkspaceFolder}/.devcontainer/jupyter_lab_config.py",
-			"target": "/opt/conda/envs/algorithms-of-the-mind/etc/jupyter/config.py",
+			"source": "${localWorkspaceFolder}/.devcontainer/root/opt/conda/etc/jupyter/config.py",
+			"target": "/opt/conda/etc/jupyter/config.py",
 			"type": "bind"
 		}
 	],
@@ -41,7 +41,7 @@
 
 	"postCreateCommand": {
 		"Install Julia Packages": "julia -e 'import Pkg; Pkg.instantiate(); Pkg.precompile()'",
-		"Launch JupyterLab": "/opt/conda/envs/algorithms-of-the-mind/bin/jupyter lab --config /opt/conda/envs/algorithms-of-the-mind/etc/jupyter/config.py"
+		"Launch JupyterLab": "/opt/conda/bin/jupyter lab"
 	},
 
 	"customizations": {
