@@ -1,35 +1,35 @@
 # syntax=docker/dockerfile:1
-FROM --platform=${TARGETPLATFORM} jupyter/julia-notebook:julia-1.9.2
+FROM quay.io/jupyter/julia-notebook:julia-1.11.6
 ARG TARGETPLATFORM
 
 LABEL org.opencontainers.image.title="Algorithms of the Mind"
-LABEL org.opencontainers.image.authors="John Muchovej (@jmuchovej), Ilker Yildirim (@iyildirim)"
+LABEL org.opencontainers.image.authors="John Muchovej (@jmuchovej), Mario Belledonne (@belledon), Ilker Yildirim (@iyildirim)"
 LABEL org.opencontainers.image.url="https://github.com/cnclgithub/algorithms-of-the-mind/README.md"
 LABEL org.opencontainers.image.source="https://github.com/cnclgithub/algorithms-of-the-mind/Dockerfile"
 
 USER root
 
 RUN apt-get update --yes && \
-    apt-get install --yes --no-install-recommends \
-      neovim \
-      tmux \
-      jq \
-    && rm -rf /var/lib/apt/cache/*
+  apt-get install --yes --no-install-recommends \
+  neovim \
+  tmux \
+  jq \
+  && rm -rf /var/lib/apt/cache/*
 
 RUN groupadd -g ${NB_UID} ${NB_USER} && \
-    usermod -g ${NB_USER} -aG users ${NB_USER} && \
-    echo ${NB_USER} ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/${NB_USER} && \
-    chmod 0440 /etc/sudoers.d/${NB_USER}
+  usermod -g ${NB_USER} -aG users ${NB_USER} && \
+  echo ${NB_USER} ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/${NB_USER} && \
+  chmod 0440 /etc/sudoers.d/${NB_USER}
 
 RUN conda install -n base conda-libmamba-solver && \
-    conda config --set solver libmamba
+  conda config --set solver libmamba
 
 ADD --chown=${NB_USER}:${NB_USER} . /algorithms-of-the-mind
 
 WORKDIR /algorithms-of-the-mind
 
 RUN conda env create -f /algorithms-of-the-mind/environment.yml --yes; \
-    conda env update -n base -f /algorithms-of-the-mind/environment.yml
+  conda env update -n base -f /algorithms-of-the-mind/environment.yml
 
 ADD .devcontainer/root/ /
 
@@ -48,16 +48,16 @@ RUN julia <<EOF
 EOF
 
 RUN rm -rf ${JUPYTER_DATA_DIR}/kernels/* ; \
-    pkgs=$(conda list -n algorithms-of-the-mind --json); \
-    _python="$(echo "${pkgs}" | jq -r '.[] | select(.name == "python")')"; \
-    pythonV="$(echo "${_python}" | jq -r ".version" | tr -d '[:space:]')"; \
-    conda run -n algorithms-of-the-mind \
-      python -m ipykernel install \
-        --prefix "${CONDA_DIR}" \
-        --name atom-py \
-        --display-name "Algorithms of the Mind (Python) ${pythonV}"; \
-    juliaV="$(julia --version | grep -Eo "([0-9]{1,}\.)+[0-9]{1,}")"; \
-    julia <<EOF
+  pkgs=$(conda list -n algorithms-of-the-mind --json); \
+  _python="$(echo "${pkgs}" | jq -r '.[] | select(.name == "python")')"; \
+  pythonV="$(echo "${_python}" | jq -r ".version" | tr -d '[:space:]')"; \
+  conda run -n algorithms-of-the-mind \
+  python -m ipykernel install \
+  --prefix "${CONDA_DIR}" \
+  --name atom-py \
+  --display-name "Algorithms of the Mind (Python) ${pythonV}"; \
+  juliaV="$(julia --version | grep -Eo "([0-9]{1,}\.)+[0-9]{1,}")"; \
+  julia <<EOF
     import IJulia;
     IJulia.installkernel(
       "Algorithms of the Mind (Julia)";
@@ -72,13 +72,13 @@ EOF
 EXPOSE 2686
 
 RUN chown -R ${NB_UID}:${NB_UID} /algorithms-of-the-mind; \
-    chmod -R 2775 /algorithms-of-the-mind; \
-    fix-permissions /algorithms-of-the-mind; \
-    chown -R ${NB_UID}:${NB_UID} ${CONDA_DIR}; \
-    chmod -R 2775 ${CONDA_DIR}; \
-    fix-permissions ${CONDA_DIR}; \
-    chown -R ${NB_UID}:${NB_UID} ${JULIA_PKGDIR}; \
-    chmod -R 2775 ${JULIA_PKGDIR}; \
-    fix-permissions ${JULIA_PKGDIR};
+  chmod -R 2775 /algorithms-of-the-mind; \
+  fix-permissions /algorithms-of-the-mind; \
+  chown -R ${NB_UID}:${NB_UID} ${CONDA_DIR}; \
+  chmod -R 2775 ${CONDA_DIR}; \
+  fix-permissions ${CONDA_DIR}; \
+  chown -R ${NB_UID}:${NB_UID} ${JULIA_PKGDIR}; \
+  chmod -R 2775 ${JULIA_PKGDIR}; \
+  fix-permissions ${JULIA_PKGDIR};
 
 USER ${NB_USER}
