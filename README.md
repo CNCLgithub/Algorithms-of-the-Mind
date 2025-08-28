@@ -150,7 +150,7 @@ But you don't need to do anything with that -- you'll be working within that con
 
 ## Fire the Jupyter app
 
-On the top menu row (blue banner), click "Courses" and then click ">_PSYC2610".
+On the top menu row (blue banner), click "Courses" and then click ">_PSYC2610". Or you can just click on the Pinned App "Jupyter (PSYC 2610)".
 
 Launch a session using the interface (standard settings should be fine).
 
